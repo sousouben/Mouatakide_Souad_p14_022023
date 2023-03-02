@@ -2,6 +2,9 @@ import React from "react";
 import "./form.css";
 
 const Form = () => {
+  const saveEmployee = () => {
+    // logique pour enregistrer un employé
+  };
   return (
     <>
       <form id="formulaire">
@@ -13,10 +16,10 @@ const Form = () => {
           <input type="text" id="last" name="last" />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <input type="date" id="date" name="date" />
+          <input type="text" id="date" name="date" />
 
           <label htmlFor="start-date">Start Date</label>
-          <input type="date" id="start-date" name="start-date" />
+          <input type="text" id="start-date" name="start-date" />
         </section>
 
         <section className="adresse">
@@ -28,12 +31,25 @@ const Form = () => {
           <select name="state" id="state"></select>
 
           <label htmlFor="zip-code">Zip Code</label>
-          <input id="zip-code" type="text" name="code" />
+          <input id="zip-code" type="number" name="code" />
+        </section>
+        <section className="Department">
+          <label htmlFor="department">Department</label>
+          <select name="department" id="department">
+            <option>Sales</option>
+            <option>Marketing</option>
+            <option>Engineering</option>
+            <option>Human Resources</option>
+            <option>Legal</option>
+          </select>
         </section>
       </form>
 
       <div className="button-save">
-        <button> Save </button>
+        <button onClick={saveEmployee}>Save</button>
+        <div id="confirmation" className="modal">
+          Employee Created!
+        </div>
       </div>
     </>
   );

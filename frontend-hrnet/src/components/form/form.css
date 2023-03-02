@@ -14,7 +14,8 @@ form input {
   display: inline-block;
 }
 .employee,
-.adresse {
+.adresse,
+.Department {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -29,10 +30,11 @@ form input {
 }
 .employee input,
 .adresse input,
-.department input {
+#state,
+#department {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 70%;
+  width: 40%;
   height: 40px;
   font-size: 20px;
   padding-left: 20px;
@@ -47,7 +49,7 @@ form input {
   padding: 12px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: 190px;
+  margin-top: 400px;
   margin-left: 46%;
   border: rgb(68, 97, 68) solid;
 }
@@ -72,4 +74,13 @@ h5 {
   margin-left: 25%;
   margin-top: 50px;
   font-size: 30px;
+}
+
+.adresse {
+  background-color: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
 }

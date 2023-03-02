@@ -5,7 +5,8 @@ const CurrentEmployees = () => {
   return (
     <>
       <section className="enteteTable">
-        <h2 className="current">List of Employees</h2>
+        <h2 className="current">Current Employees</h2>
+        <table id="employee-table" className="display"></table>
       </section>
     </>
   );

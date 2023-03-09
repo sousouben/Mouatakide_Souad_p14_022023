@@ -12,7 +12,7 @@ const Header = () => {
           <Link to="/">Create employee</Link>
           <Link to="/employees">Current employees</Link>
         </nav>
-        <div className="h1">
+        <div>
           <h1> HRnet</h1>
         </div>
       </header>

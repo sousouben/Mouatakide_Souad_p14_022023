@@ -75,12 +75,3 @@ h5 {
   margin-top: 50px;
   font-size: 30px;
 }
-
-.adresse {
-  background-color: green;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 0;
-}

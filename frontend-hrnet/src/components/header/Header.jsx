@@ -7,14 +7,14 @@ const Header = () => {
   return (
     <>
       <header className="header">
-        <img src={logo} alt="logo Wealth Health" />
+        <div className="logo">
+          <img src={logo} alt="logo Wealth Health" />
+          <h1> HRnet</h1>
+        </div>
         <nav>
           <Link to="/">Create employee</Link>
           <Link to="/employees">Current employees</Link>
         </nav>
-        <div>
-          <h1> HRnet</h1>
-        </div>
       </header>
     </>
   );

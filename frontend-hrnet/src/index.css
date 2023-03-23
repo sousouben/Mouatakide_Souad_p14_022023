@@ -1,17 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+
 body {
   background: url("./assets/back.png") top;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Courgette", cursive;
   list-style-type: none;
 }

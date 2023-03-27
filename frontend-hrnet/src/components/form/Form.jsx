@@ -1,58 +1,155 @@
 import React from "react";
 import "./form.css";
+import { useState } from "react";
+import { states } from "../../data/states";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
-const Form = () => {
-  const saveEmployee = () => {
-    // logique pour enregistrer un employé
+const departments = [
+  "Sales",
+  "Marketing",
+  "Engineering",
+  "Human Resources",
+  "Legal",
+];
+
+let tabStatesFilter = [];
+
+const getStatesNames = (states) => {
+  states.map((state) => tabStatesFilter.push(state.name));
+  return tabStatesFilter;
+};
+
+const statesNames = getStatesNames(states);
+
+function formatDate(date) {
+  const inputDate = new Date(date);
+
+  // Vérifier que la date en entrée est valide
+  if (isNaN(inputDate.getTime())) {
+    throw new Error("Invalid date");
+  }
+
+  // Formater la date au format "MM/DD/YYYY"
+  const isoDate = inputDate.toISOString().split("T")[0];
+  const [year, month, day] = isoDate.split(".");
+  const formattedDate = [day, month, year].join("/");
+
+  return formattedDate;
+}
+
+let employee = [];
+
+function Form() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [birthDate, setBirthDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [department, setDepartment] = useState("");
+
+  employee = {
+    first: firstName.toLocaleLowerCase(),
+    last: lastName.toLocaleLowerCase(),
+    birth: formatDate(birthDate),
+    start: formatDate(startDate),
+    street: street.toLocaleLowerCase(),
+    city: city.toLocaleLowerCase(),
+    state: state.label,
+    code: zipCode,
+    department: department.label,
   };
+
   return (
     <>
       <form id="formulaire">
         <section className="employee">
           <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first" name="first" />
+          <input
+            type="text"
+            id="first"
+            name="first"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
 
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last" name="last" />
+          <input
+            type="text"
+            id="last"
+            name="last"
+            onChange={(e) => setLastName(e.target.value)}
+          />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <input type="text" id="date" name="date" />
+          <DatePicker
+            name="birth"
+            selected={birthDate}
+            onChange={setBirthDate}
+            value={birthDate}
+          />
 
           <label htmlFor="start-date">Start Date</label>
-          <input type="text" id="start-date" name="start-date" />
+          <DatePicker
+            name="start"
+            selected={startDate}
+            onChange={setStartDate}
+            value={startDate}
+          />
         </section>
 
         <section className="adresse">
           <label htmlFor="street">Street</label>
-          <input id="street" type="text" name="street" />
+          <input
+            id="street"
+            type="text"
+            name="street"
+            onChange={(e) => setStreet(e.target.value)}
+          />
           <label htmlFor="city">City</label>
-          <input id="city" type="text" name="city" />
+          <input
+            id="city"
+            type="text"
+            name="city"
+            onChange={(e) => setCity(e.target.value)}
+          />
           <label htmlFor="state">State</label>
-          <select name="state" id="state"></select>
+          <Dropdown
+            placeholder="Select an option"
+            name="stateList"
+            options={statesNames}
+            onChange={setState}
+          />
 
           <label htmlFor="zip-code">Zip Code</label>
-          <input id="zip-code" type="number" name="code" />
+          <input
+            id="zip-code"
+            type="text"
+            name="code"
+            onChange={(e) => setZipCode(e.target.value)}
+          />
         </section>
-        <section className="Department">
-          <label htmlFor="department">Department</label>
-          <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+
+        <section className="department">
+          <Dropdown
+            placeholder="Departments"
+            name="departments"
+            options={departments}
+            onChange={setDepartment}
+          />
         </section>
       </form>
 
       <div className="button-save">
-        <button onClick={saveEmployee}>Save</button>
-        <div id="confirmation" className="modal">
-          Employee Created!
-        </div>
+        <button onClick={employee}>Save</button>
+        <div id="confirmation" className="modal"></div>
       </div>
     </>
   );
-};
+}
 
 export default Form;

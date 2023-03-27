@@ -1,4 +1,5 @@
 import React from "react";
+import DataList from "../../components/dataList/DataList";
 import "./currentEmployees.css";
 
 const CurrentEmployees = () => {
@@ -6,7 +7,7 @@ const CurrentEmployees = () => {
     <>
       <section className="enteteTable">
         <h2 className="current">Current Employees</h2>
-        <table id="employee-table" className="display"></table>
+        <DataList />
       </section>
     </>
   );

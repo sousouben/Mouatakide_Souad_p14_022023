@@ -8,19 +8,19 @@ form {
 }
 form label {
   display: inline-block;
-  width: 40%;
+  width: 20%;
 }
 form input {
   display: inline-block;
 }
+
 .employee,
-.adresse,
-.Department {
+.adresse {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  margin-top: 40px;
+  margin-left: 240px;
+  width: 37%;
   height: 350px;
   color: green;
 }
@@ -30,15 +30,22 @@ form input {
 }
 .employee input,
 .adresse input,
-#state,
-#department {
+.Dropdown-control {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 40%;
+  width: 70%;
   height: 40px;
   font-size: 20px;
   padding-left: 20px;
   padding-right: 20px;
+}
+.department {
+  display: flex;
+  flex-direction: column;
+  width: 37%;
+  height: 70px;
+  color: white;
+  margin-left: 240px;
 }
 
 .button-save button {
@@ -49,7 +56,7 @@ form input {
   padding: 12px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: 400px;
+  margin-top: 60px;
   margin-left: 46%;
   border: rgb(68, 97, 68) solid;
 }

@@ -1,7 +1,8 @@
 .current {
   margin-top: 40px;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-bottom: 40px;
+  margin-left: 40px;
+  text-align: left;
   color: rgb(68, 97, 68);
 }
 .enteteTable {

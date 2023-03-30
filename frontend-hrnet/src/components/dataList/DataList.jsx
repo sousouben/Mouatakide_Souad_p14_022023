@@ -79,7 +79,7 @@ const data = [
     city: "Paris",
     state: "France",
     code: "75006",
-    department: "Sales",
+    department: "Engineering",
   },
   {
     id: 2,
@@ -103,7 +103,7 @@ const data = [
     city: "Mexico",
     state: "Mexique",
     code: "00000",
-    department: "Engineering",
+    department: "Sales",
   },
   {
     id: 4,

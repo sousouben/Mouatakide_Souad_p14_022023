@@ -1,14 +1,15 @@
 form {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   height: 550px;
+  align-items: center;
   margin-top: 35px;
   font-size: 20px;
   z-index: 10;
 }
 form label {
   display: inline-block;
-  width: 20%;
 }
 form input {
   display: inline-block;
@@ -19,7 +20,6 @@ form input {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  margin-left: 240px;
   width: 37%;
   height: 350px;
   color: green;
@@ -33,7 +33,6 @@ form input {
 .Dropdown-control {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 70%;
   height: 40px;
   font-size: 20px;
   padding-left: 20px;
@@ -45,7 +44,6 @@ form input {
   width: 37%;
   height: 70px;
   color: white;
-  margin-left: 240px;
 }
 
 .button-save button {
@@ -56,9 +54,8 @@ form input {
   padding: 12px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: 60px;
-  margin-left: 56%;
   border: rgb(68, 97, 68) solid;
+  margin-bottom: 60px;
 }
 .button-save button:hover {
   transform: scale(0.9);
@@ -81,4 +78,11 @@ h5 {
   margin-left: 25%;
   margin-top: 50px;
   font-size: 30px;
+}
+
+#formulaire,
+.button-save {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

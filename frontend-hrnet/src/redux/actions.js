@@ -3,13 +3,13 @@ import { selectEmployees } from "../redux/selector";
 
 export function validForm() {
   return (dispatch) => {
-    dispatch(actions.validForm());
+    dispatch(actions.setFormValid());
   };
 }
 
 export function unvalidForm() {
   return (dispatch) => {
-    dispatch(actions.unvalidForm());
+    dispatch(actions.setFormInvalid());
   };
 }
 

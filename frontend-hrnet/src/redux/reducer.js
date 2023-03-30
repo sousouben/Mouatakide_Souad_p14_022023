@@ -7,13 +7,13 @@ const { actions, reducer } = createSlice({
     isValidForm: false,
   },
   reducers: {
-    validForm: (state, action) => {
+    setFormValid: (state) => {
       state.isValidForm = true;
     },
-    unvalidForm: (state, action) => {
+    setFormInvalid: (state) => {
       state.isValidForm = false;
     },
-    submit: (state, action) => {
+    setFormSubmit: (state, action) => {
       state.dataEmployee = action.payload;
     },
   },

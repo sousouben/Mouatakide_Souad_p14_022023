@@ -6,6 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { useDispatch } from "react-redux";
+import { unvalidForm, validForm } from "../../redux/actions";
 
 const departments = [
   "Sales",
@@ -52,6 +54,7 @@ function Form() {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [department, setDepartment] = useState("");
+  const dispatch = useDispatch();
 
   employee = {
     first: firstName.toLocaleLowerCase(),
@@ -63,6 +66,22 @@ function Form() {
     state: state.label,
     code: zipCode,
     department: department.label,
+  };
+  console.log(employee);
+
+  const checkForm = () => {
+    if (firstName === "" || lastName === "") {
+      dispatch(unvalidForm());
+      console.log("unvalidForm");
+    } else {
+      dispatch(validForm());
+      console.log("validForm");
+    }
+  };
+
+  const saveEmployee = async (e) => {
+    e.preventDefault();
+    checkForm();
   };
 
   return (
@@ -110,6 +129,7 @@ function Form() {
             name="street"
             onChange={(e) => setStreet(e.target.value)}
           />
+
           <label htmlFor="city">City</label>
           <input
             id="city"
@@ -117,6 +137,7 @@ function Form() {
             name="city"
             onChange={(e) => setCity(e.target.value)}
           />
+
           <label htmlFor="state">State</label>
           <Dropdown
             placeholder="Select an option"
@@ -128,7 +149,7 @@ function Form() {
           <label htmlFor="zip-code">Zip Code</label>
           <input
             id="zip-code"
-            type="text"
+            type="number"
             name="code"
             onChange={(e) => setZipCode(e.target.value)}
           />
@@ -145,7 +166,7 @@ function Form() {
       </form>
 
       <div className="button-save">
-        <button onClick={employee}>Save</button>
+        <button onClick={saveEmployee}> Save </button>
         <div id="confirmation" className="modal"></div>
       </div>
     </>

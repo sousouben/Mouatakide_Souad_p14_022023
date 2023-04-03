@@ -16,6 +16,15 @@ const { actions, reducer } = createSlice({
     setFormSubmit: (state, action) => {
       state.dataEmployee = action.payload;
     },
+    addEmployee: {
+      prepare: (data, newEmployee) => ({ payload: { data, newEmployee } }),
+      reducer: (state, action) => {
+        state.dataEmployee = [
+          ...action.payload.data,
+          action.payload.newEmployee,
+        ];
+      },
+    },
   },
 });
 

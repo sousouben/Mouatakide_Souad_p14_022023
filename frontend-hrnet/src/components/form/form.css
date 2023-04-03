@@ -21,7 +21,7 @@ form input {
   flex-direction: column;
   margin-top: 40px;
   width: 37%;
-  height: 350px;
+  height: 430px;
   color: green;
 }
 .employee label,
@@ -85,4 +85,10 @@ h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.5em;
+  margin-bottom: 16px;
 }

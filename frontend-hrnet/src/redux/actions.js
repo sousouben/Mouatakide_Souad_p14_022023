@@ -19,3 +19,17 @@ export function checkValidForm() {
     return validForm;
   };
 }
+
+export function submitForm(newEmployee) {
+  return async (dispatch, getState) => {
+    const isFormCorrect = selectEmployees(getState()).isValidForm;
+    const getEmployees = selectEmployees(getState()).dataEmployee;
+    if (isFormCorrect) {
+      dispatch(actions.setFormSubmit(newEmployee));
+      dispatch(actions.addEmployee(getEmployees, newEmployee));
+      return true;
+    } else {
+      return false;
+    }
+  };
+}

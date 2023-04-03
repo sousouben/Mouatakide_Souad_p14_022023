@@ -7,8 +7,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useDispatch } from "react-redux";
-import { unvalidForm, validForm } from "../../redux/actions";
+import {
+  unvalidForm,
+  validForm,
+  checkValidForm,
+  submitForm,
+} from "../../redux/actions";
 
+//selection de départements
 const departments = [
   "Sales",
   "Marketing",
@@ -25,13 +31,28 @@ const getStatesNames = (states) => {
 };
 
 const statesNames = getStatesNames(states);
+//fin départements
 
+//dataPicker
 function formatDate(date) {
   const inputDate = new Date(date);
 
   // Vérifier que la date en entrée est valide
   if (isNaN(inputDate.getTime())) {
     throw new Error("Invalid date");
+  }
+
+  // Vérifier si la date correspond à un anniversaire en dessous de 18 ans
+  const now = new Date();
+  const ageDiffMs = now.getTime() - inputDate.getTime();
+  const ageDate = new Date(ageDiffMs);
+  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  if (age < 18) {
+    console.log(
+      "Sorry, you must be at least 18 years old to use this feature."
+    );
+    inputDate.setFullYear(2005); // Modifier l'année de naissance à 2005 (18 ans en 2023)
   }
 
   // Formater la date au format "MM/DD/YYYY"
@@ -41,6 +62,8 @@ function formatDate(date) {
 
   return formattedDate;
 }
+
+//fin dataPicker
 
 let employee = [];
 
@@ -56,6 +79,105 @@ function Form() {
   const [department, setDepartment] = useState("");
   const dispatch = useDispatch();
 
+  //gestion des messages d'erreurs
+  const [firstNameError, setFirstNameError] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
+  const [birthDateError, setBirthDateError] = useState("");
+  const [startDateError, setStartDateError] = useState("");
+  const [streetError, setStreetError] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [stateError, setStateError] = useState("");
+  const [zipCodeError, setZipCodeError] = useState("");
+  const [departmentError, setDepartmentError] = useState("");
+
+  const validateForm = () => {
+    let isError = false;
+    if (!firstName) {
+      setFirstNameError("Please enter a first name.");
+      isError = true;
+    } else {
+      setFirstNameError("");
+    }
+    if (!lastName) {
+      setLastNameError("Please enter a last name.");
+      isError = true;
+    } else {
+      setLastNameError("");
+    }
+    if (!birthDate) {
+      setBirthDateError("Please select a birth date.");
+      isError = true;
+    } else {
+      const now = new Date();
+      if (birthDate > now) {
+        setBirthDateError("Birth date cannot be in the future.");
+        isError = true;
+      } else {
+        const ageDiffMs = now.getTime() - birthDate.getTime();
+        const ageDate = new Date(ageDiffMs);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        if (age < 18) {
+          setBirthDateError("Your date of birth is not valid.");
+          isError = true;
+        } else {
+          setBirthDateError("");
+        }
+      }
+    }
+    if (!startDate) {
+      setStartDateError("Please select a start date.");
+      isError = true;
+    } else {
+      const now = new Date();
+      if (startDate > now) {
+        setStartDateError("Start date cannot be in the future.");
+        isError = true;
+      } else {
+        const ageDiffMs = startDate.getTime() - birthDate.getTime();
+        const ageDate = new Date(ageDiffMs);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        if (age < 18) {
+          setStartDateError("You must be at least 18 years old to start.");
+          isError = true;
+        } else {
+          setStartDateError("");
+        }
+      }
+    }
+    if (!street) {
+      setStreetError("Please enter a street address.");
+      isError = true;
+    } else {
+      setStreetError("");
+    }
+    if (!city) {
+      setCityError("Please enter a city.");
+      isError = true;
+    } else {
+      setCityError("");
+    }
+    if (!state) {
+      setStateError("Please select a state.");
+      isError = true;
+    } else {
+      setStateError("");
+    }
+    if (!zipCode) {
+      setZipCodeError("Please enter a zip code.");
+      isError = true;
+    } else {
+      setZipCodeError("");
+    }
+    if (!department) {
+      setDepartmentError("Please select a department.");
+      isError = true;
+    } else {
+      setDepartmentError("");
+    }
+
+    return isError;
+  };
+
   employee = {
     first: firstName.toLocaleLowerCase(),
     last: lastName.toLocaleLowerCase(),
@@ -70,7 +192,17 @@ function Form() {
   console.log(employee);
 
   const checkForm = () => {
-    if (firstName === "" || lastName === "") {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      street === "" ||
+      city === "" ||
+      state === "" ||
+      zipCode === "" ||
+      department === "" ||
+      birthDate === new Date() ||
+      startDate === new Date()
+    ) {
       dispatch(unvalidForm());
       console.log("unvalidForm");
     } else {
@@ -82,6 +214,14 @@ function Form() {
   const saveEmployee = async (e) => {
     e.preventDefault();
     checkForm();
+    const submit = dispatch(checkValidForm());
+    const err = validateForm();
+
+    if (submit) {
+      dispatch(submitForm(employee));
+    } else {
+      return err;
+    }
   };
 
   return (
@@ -95,6 +235,7 @@ function Form() {
             name="first"
             onChange={(e) => setFirstName(e.target.value)}
           />
+          {firstNameError && <p className="error-message">{firstNameError}</p>}
 
           <label htmlFor="last-name">Last Name</label>
           <input
@@ -103,6 +244,7 @@ function Form() {
             name="last"
             onChange={(e) => setLastName(e.target.value)}
           />
+          {lastNameError && <p className="error-message">{lastNameError}</p>}
 
           <label htmlFor="date-of-birth">Date of Birth</label>
           <DatePicker
@@ -111,6 +253,7 @@ function Form() {
             onChange={setBirthDate}
             value={birthDate}
           />
+          {birthDateError && <p className="error-message">{birthDateError}</p>}
 
           <label htmlFor="start-date">Start Date</label>
           <DatePicker
@@ -119,6 +262,7 @@ function Form() {
             onChange={setStartDate}
             value={startDate}
           />
+          {startDateError && <p className="error-message">{startDateError}</p>}
         </section>
 
         <section className="adresse">
@@ -129,6 +273,7 @@ function Form() {
             name="street"
             onChange={(e) => setStreet(e.target.value)}
           />
+          {streetError && <p className="error-message">{streetError}</p>}
 
           <label htmlFor="city">City</label>
           <input
@@ -137,6 +282,7 @@ function Form() {
             name="city"
             onChange={(e) => setCity(e.target.value)}
           />
+          {cityError && <p className="error-message">{cityError}</p>}
 
           <label htmlFor="state">State</label>
           <Dropdown
@@ -145,6 +291,7 @@ function Form() {
             options={statesNames}
             onChange={setState}
           />
+          {stateError && <p className="error-message">{stateError}</p>}
 
           <label htmlFor="zip-code">Zip Code</label>
           <input
@@ -153,15 +300,17 @@ function Form() {
             name="code"
             onChange={(e) => setZipCode(e.target.value)}
           />
-        </section>
+          {zipCodeError && <p className="error-message">{zipCodeError}</p>}
 
-        <section className="department">
           <Dropdown
             placeholder="Departments"
             name="departments"
             options={departments}
             onChange={setDepartment}
           />
+          {departmentError && (
+            <p className="error-message">{departmentError}</p>
+          )}
         </section>
       </form>
 

@@ -128,8 +128,8 @@ function Form() {
       setStartDateError("Please select a start date.");
       isError = true;
     } else {
-      const now = new Date();
-      if (startDate > now) {
+      const now = Date.now();
+      if (startDate.getTime() > now) {
         setStartDateError("Start date cannot be in the future.");
         isError = true;
       } else {
@@ -201,7 +201,8 @@ function Form() {
       zipCode === "" ||
       department === "" ||
       birthDate === new Date() ||
-      startDate === new Date()
+      startDate === new Date() ||
+      birthDate.getFullYear() >= new Date().getFullYear() - 18
     ) {
       dispatch(unvalidForm());
       console.log("unvalidForm");
@@ -212,6 +213,7 @@ function Form() {
   };
 
   const saveEmployee = async (e) => {
+    console.log(startDate.getTime());
     e.preventDefault();
     checkForm();
     const submit = dispatch(checkValidForm());

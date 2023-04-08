@@ -25,3 +25,12 @@
   min-height: 0px;
   margin: auto;
 }
+
+.kTRUaX button,
+.kTRUaX input {
+  font-size: 20px;
+  color: #5a6f07;
+  border: #5a6f07 solid;
+  padding-left: 8px;
+  padding-right: 8px;
+}

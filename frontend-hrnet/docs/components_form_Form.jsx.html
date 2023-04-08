@@ -1,4 +1,32 @@
-import React from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/form/Form.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/form/Form.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
 import "./form.css";
 import { useState } from "react";
 import { states } from "../../data/states";
@@ -17,7 +45,7 @@ import {
 //selection de départements
 /**
  * Liste des départements disponibles.
- * @type {Array.<string>}
+ * @type {Array.&lt;string>}
  */
 const departments = [
   "Sales",
@@ -31,8 +59,8 @@ let tabStatesFilter = [];
 
 /**
  * Récupère les noms des États à partir d'une liste d'états.
- * @param {Array.<Object>} states - Liste d'objets représentant les États.
- * @return {Array.<string>} - Tableau contenant les noms des États.
+ * @param {Array.&lt;Object>} states - Liste d'objets représentant les États.
+ * @return {Array.&lt;string>} - Tableau contenant les noms des États.
  */
 const getStatesNames = (states) => {
   states.map((state) => tabStatesFilter.push(state.name));
@@ -41,7 +69,7 @@ const getStatesNames = (states) => {
 
 /**
  * Tableau contenant les noms des États.
- * @type {Array.<string>}
+ * @type {Array.&lt;string>}
  */
 const statesNames = getStatesNames(states);
 //fin départements
@@ -69,7 +97,7 @@ function formatDate(date) {
   const ageDate = new Date(ageDiffMs);
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
-  if (age < 18) {
+  if (age &lt; 18) {
     console.log(
       "Sorry, you must be at least 18 years old to use this feature."
     );
@@ -141,7 +169,7 @@ function Form() {
         const ageDiffMs = now.getTime() - birthDate.getTime();
         const ageDate = new Date(ageDiffMs);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 18) {
+        if (age &lt; 18) {
           setBirthDateError("Your date of birth is not valid.");
           isError = true;
         } else {
@@ -161,7 +189,7 @@ function Form() {
         const ageDiffMs = startDate.getTime() - birthDate.getTime();
         const ageDate = new Date(ageDiffMs);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 18) {
+        if (age &lt; 18) {
           setStartDateError("You must be at least 18 years old to start.");
           isError = true;
         } else {
@@ -264,101 +292,124 @@ function Form() {
   };
 
   return (
-    <>
-      <form id="formulaire">
-        <section className="employee">
-          <label htmlFor="first-name">First Name</label>
-          <input
+    &lt;>
+      &lt;form id="formulaire">
+        &lt;section className="employee">
+          &lt;label htmlFor="first-name">First Name&lt;/label>
+          &lt;input
             type="text"
             id="first"
             name="first"
             onChange={(e) => setFirstName(e.target.value)}
           />
-          {firstNameError && <p className="error-message">{firstNameError}</p>}
+          {firstNameError &amp;&amp; &lt;p className="error-message">{firstNameError}&lt;/p>}
 
-          <label htmlFor="last-name">Last Name</label>
-          <input
+          &lt;label htmlFor="last-name">Last Name&lt;/label>
+          &lt;input
             type="text"
             id="last"
             name="last"
             onChange={(e) => setLastName(e.target.value)}
           />
-          {lastNameError && <p className="error-message">{lastNameError}</p>}
+          {lastNameError &amp;&amp; &lt;p className="error-message">{lastNameError}&lt;/p>}
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker
+          &lt;label htmlFor="date-of-birth">Date of Birth&lt;/label>
+          &lt;DatePicker
             name="birth"
             selected={birthDate}
             onChange={setBirthDate}
             value={birthDate}
           />
-          {birthDateError && <p className="error-message">{birthDateError}</p>}
+          {birthDateError &amp;&amp; &lt;p className="error-message">{birthDateError}&lt;/p>}
 
-          <label htmlFor="start-date">Start Date</label>
-          <DatePicker
+          &lt;label htmlFor="start-date">Start Date&lt;/label>
+          &lt;DatePicker
             name="start"
             selected={startDate}
             onChange={setStartDate}
             value={startDate}
           />
-          {startDateError && <p className="error-message">{startDateError}</p>}
-        </section>
+          {startDateError &amp;&amp; &lt;p className="error-message">{startDateError}&lt;/p>}
+        &lt;/section>
 
-        <section className="adresse">
-          <label htmlFor="street">Street</label>
-          <input
+        &lt;section className="adresse">
+          &lt;label htmlFor="street">Street&lt;/label>
+          &lt;input
             id="street"
             type="text"
             name="street"
             onChange={(e) => setStreet(e.target.value)}
           />
-          {streetError && <p className="error-message">{streetError}</p>}
+          {streetError &amp;&amp; &lt;p className="error-message">{streetError}&lt;/p>}
 
-          <label htmlFor="city">City</label>
-          <input
+          &lt;label htmlFor="city">City&lt;/label>
+          &lt;input
             id="city"
             type="text"
             name="city"
             onChange={(e) => setCity(e.target.value)}
           />
-          {cityError && <p className="error-message">{cityError}</p>}
+          {cityError &amp;&amp; &lt;p className="error-message">{cityError}&lt;/p>}
 
-          <label htmlFor="state">State</label>
-          <Dropdown
+          &lt;label htmlFor="state">State&lt;/label>
+          &lt;Dropdown
             placeholder="Select an option"
             name="stateList"
             options={statesNames}
             onChange={setState}
           />
-          {stateError && <p className="error-message">{stateError}</p>}
+          {stateError &amp;&amp; &lt;p className="error-message">{stateError}&lt;/p>}
 
-          <label htmlFor="zip-code">Zip Code</label>
-          <input
+          &lt;label htmlFor="zip-code">Zip Code&lt;/label>
+          &lt;input
             id="zip-code"
             type="number"
             name="code"
             onChange={(e) => setZipCode(e.target.value)}
           />
-          {zipCodeError && <p className="error-message">{zipCodeError}</p>}
+          {zipCodeError &amp;&amp; &lt;p className="error-message">{zipCodeError}&lt;/p>}
 
-          <Dropdown
+          &lt;Dropdown
             placeholder="Departments"
             name="departments"
             options={departments}
             onChange={setDepartment}
           />
-          {departmentError && (
-            <p className="error-message">{departmentError}</p>
+          {departmentError &amp;&amp; (
+            &lt;p className="error-message">{departmentError}&lt;/p>
           )}
-        </section>
-      </form>
+        &lt;/section>
+      &lt;/form>
 
-      <div className="button-save">
-        <button onClick={saveEmployee}> Save </button>
-        <div id="confirmation" className="modal"></div>
-      </div>
-    </>
+      &lt;div className="button-save">
+        &lt;button onClick={saveEmployee}> Save &lt;/button>
+        &lt;div id="confirmation" className="modal">&lt;/div>
+      &lt;/div>
+    &lt;/>
   );
 }
 
 export default Form;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateEmployees">CreateEmployees</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#checkValidForm">checkValidForm</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getStatesNames">getStatesNames</a></li><li><a href="global.html#saveEmployee">saveEmployee</a></li><li><a href="global.html#selectEmployees">selectEmployees</a></li><li><a href="global.html#statesNames">statesNames</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#unvalidForm">unvalidForm</a></li><li><a href="global.html#validForm">validForm</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Apr 08 2023 11:35:59 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

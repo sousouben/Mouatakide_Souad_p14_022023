@@ -1,5 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * @typedef {Object} EmployeeData
+ * @property {Array<Object>} data - Les données des employés
+ * @property {boolean} isValidForm - Indique si le formulaire est valide ou non
+ */
+
+/**
+ * @typedef {Object} FormState
+ * @property {Array<EmployeeData>} dataEmployee - Les données de tous les employés
+ * @property {boolean} isValidForm - Indique si le formulaire est valide ou non
+ */
+
+/**
+ * Les actions du formulaire
+ * @namespace
+ * @property {Function} setFormValid - Met le formulaire en valide
+ * @property {Function} setFormInvalid - Met le formulaire en invalide
+ * @property {Function} setFormSubmit - Envoie les données du formulaire
+ * @property {Function} addEmployee - Ajoute un nouvel employé
+ */
+
 const { actions, reducer } = createSlice({
   name: "form",
   initialState: {

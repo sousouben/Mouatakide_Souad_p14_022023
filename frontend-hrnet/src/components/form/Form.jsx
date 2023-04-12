@@ -79,7 +79,7 @@ function formatDate(date) {
   // Formater la date au format "MM/DD/YYYY"
   const isoDate = inputDate.toISOString().split("T")[0];
   const [year, month, day] = isoDate.split(".");
-  const formattedDate = [day, month, year].join("/");
+  const formattedDate = [day, month, year].join("");
 
   return formattedDate;
 }

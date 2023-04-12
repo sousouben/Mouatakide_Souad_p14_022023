@@ -21,7 +21,6 @@ form input {
   flex-direction: column;
   margin-top: 40px;
   width: 37%;
-  height: 430px;
   color: green;
 }
 .employee label,
@@ -34,7 +33,7 @@ form input {
   margin-top: 10px;
   margin-bottom: 10px;
   height: 40px;
-  font-size: 15px;
+  font-size: 19px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -56,6 +55,7 @@ form input {
   cursor: pointer;
   border: rgb(68, 97, 68) solid;
   margin-bottom: 60px;
+  margin-top: 37px;
 }
 .button-save button:hover {
   transform: scale(0.9);
@@ -91,4 +91,16 @@ h5 {
   color: red;
   font-size: 0.5em;
   margin-bottom: 16px;
+}
+
+@media (max-width: 667px) {
+  #formulaire,
+  .button-save {
+    height: auto;
+  }
+  .employee input,
+  .adresse input,
+  .Dropdown-control {
+    font-size: 10px;
+  }
 }

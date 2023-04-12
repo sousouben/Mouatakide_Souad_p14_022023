@@ -394,7 +394,7 @@ function DataList() {
   const employees = useSelector(selectEmployees).dataEmployee;
   console.log(employees);
 
-  /*const filteredItems = employees.filter(
+  const filteredItems = employees.filter(
     (data) =>
       data.first.toLowerCase().includes(filterText.toLowerCase()) ||
       data.last.toLowerCase().includes(filterText.toLowerCase()) ||
@@ -405,7 +405,7 @@ function DataList() {
       data.city.toLowerCase().includes(filterText.toLowerCase()) ||
       data.state.toLowerCase().includes(filterText.toLowerCase()) ||
       data.code.toLowerCase().includes(filterText.toLowerCase())
-  );*/
+  );
 
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
@@ -427,7 +427,7 @@ function DataList() {
   return (
     <DataTable
       columns={columns}
-      data={data}
+      data={filteredItems}
       pagination
       paginationResetDefaultPage={resetPaginationToggle}
       subHeader

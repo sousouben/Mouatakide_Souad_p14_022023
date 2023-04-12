@@ -34,3 +34,10 @@
   padding-left: 8px;
   padding-right: 8px;
 }
+
+@media (max-width: 653px) {
+  .kTRUaX button,
+  .kTRUaX input {
+    font-size: 18px;
+  }
+}

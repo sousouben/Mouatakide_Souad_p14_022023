@@ -9,3 +9,9 @@
   margin-top: 15px;
   background-color: transparent;
 }
+
+@media (max-width: 767px) {
+  .current {
+    text-align: center;
+  }
+}

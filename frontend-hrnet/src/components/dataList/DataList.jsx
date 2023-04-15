@@ -373,6 +373,7 @@ const data = [
     department: "Legal",
   },
 ];
+console.log(data);
 const FilterComponent = ({ filterText, onFilter, onClear }) => (
   <>
     <input

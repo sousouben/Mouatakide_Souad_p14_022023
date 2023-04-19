@@ -52,6 +52,7 @@ yarn start
 # For the frontend
 npm run doc
 ```
+---
 
 #### Besoins
 
@@ -63,6 +64,8 @@ npm run doc
 - Tu devras ajouter un système de gestion d'état (la version actuelle utilise un stockage local). ✔️
 - Tu dois aussi t'assurer que tout est cohérent au niveau du style. Pour cela, tu n'es pas obligé de refaire le design de l'application, mais si tu veux changer le style pour quelque chose de plus moderne, tu es le bienvenu. ✔️
 - Si tu as le temps, tu peux tester le code React avec une suite de tests unitaires. Sinon, seuls des tests manuels sont nécessaires. ✔️
+
+---
 
 ##### issues
 

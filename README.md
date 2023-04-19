@@ -52,6 +52,7 @@ yarn start
 # For the frontend
 npm run doc
 ```
+
 ---
 
 #### Besoins
@@ -67,7 +68,7 @@ npm run doc
 
 ---
 
-##### issues
+##### Issues
 
 - [1ère issue DateTime](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/1)
 - [Etude du plugins Jquery](https://github.com/xdan/datetimepicker)

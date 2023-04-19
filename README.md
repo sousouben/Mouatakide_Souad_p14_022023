@@ -1,5 +1,14 @@
 # Projet 14 Openclassroom - HRNET
 
+![logo](./frontend-hrnet/src/assets/logo%20Wealth_Health.jpg)
+
+---
+
+- ![Author](<https://img.shields.io/badge/Author-Souad Mouatakide-">)
+- ![GitHub P14_HRnet_React size](https://img.shields.io/github/repo-size/sousouben/plugin_modale)
+- ![GitHub top language](https://img.shields.io/github/languages/top/sousouben/plugin_modale)
+- ![GitHub language count](https://img.shields.io/github/languages/count/sousouben/plugin_modale)
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
@@ -11,17 +20,14 @@
 
 ---
 
-![logo](./frontend-hrnet/src/assets/logo%20Wealth_Health.jpg)
-
 ## Lancement de l'application
 
-- Clone the repo on your computer.
-
 ```bash
-clone the repository : https://github.com/sousouben/Mouatakide_Souad_p14_022023.git
+#Clone the repo on your computer:
+https://github.com/sousouben/Mouatakide_Souad_p14_022023.git
 ```
 
-- Installations des packages à la suite du clonage.
+### Installations des packages à la suite du clonage.
 
 ```bash
 # avec NPM
@@ -30,7 +36,7 @@ npm install
 yarn
 ```
 
-- Lancement du projet.
+#### Lancement du projet.
 
 ```bash
 cd frontend-hrnet
@@ -47,7 +53,7 @@ yarn start
 npm run doc
 ```
 
-### Besoins
+#### Besoins
 
 - [✔️] Convertir l'ensemble du projet HRNet en React.
 - [✔️] Convertir **l'un** des quatre plugins jQuery actuels en React. Remplacer les 3 plugins jQuery restants par des composants React que tu coderas toi-même, ou que tu peux importer depuis des libraires existantes si tu manques de temps.
@@ -58,18 +64,13 @@ npm run doc
 - Tu dois aussi t'assurer que tout est cohérent au niveau du style. Pour cela, tu n'es pas obligé de refaire le design de l'application, mais si tu veux changer le style pour quelque chose de plus moderne, tu es le bienvenu. ✔️
 - Si tu as le temps, tu peux tester le code React avec une suite de tests unitaires. Sinon, seuls des tests manuels sont nécessaires. ✔️
 
-### issues
+##### issues
 
 - [1ère issue DateTime](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/1)
-  - [Etude du plugins Jquery](https://github.com/xdan/datetimepicker)
+- [Etude du plugins Jquery](https://github.com/xdan/datetimepicker)
 - [2ème issue modale](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/3)
-  - [Etude du plugins Jquery](https://github.com/kylefox/jquery-modal)
+- [Etude du plugins Jquery](https://github.com/kylefox/jquery-modal)
 - [3ème issue selecteur](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/4)
-  - [Etude du plugins Jquery](https://github.com/jquery/jquery-ui/blob/master/ui/widgets/selectmenu.js)
+- [Etude du plugins Jquery](https://github.com/jquery/jquery-ui/blob/master/ui/widgets/selectmenu.js)
 - [4ème issue tableau](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/2)
-
-  - [Etude du plugins Jquery](https://github.com/DataTables/DataTables)
-
-  ## Author
-
-Mouatakide Souad
+- [Etude du plugins Jquery](https://github.com/DataTables/DataTables)

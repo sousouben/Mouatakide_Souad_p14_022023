@@ -13,7 +13,7 @@ import {
   checkValidForm,
   submitForm,
 } from "../../redux/actions";
-import { Modale } from "plugin_modale";
+import Modale from "plugin_modale";
 
 //selection de départements
 /**
@@ -359,9 +359,12 @@ function Form() {
 
       <div className="button-save">
         <button onClick={saveEmployee}> Save </button>
-        <div id="confirmation" className="modal">
-          {modale && <Modale closeModale={setModale} />}
-        </div>
+        {modale && (
+          <Modale
+            message={"employee successfully created"}
+            closeModale={setModale}
+          />
+        )}
       </div>
     </>
   );

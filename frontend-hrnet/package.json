@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "jsdoc": "^4.0.2",
+    "plugin_modale": "^0.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-calendar": "^4.1.0",

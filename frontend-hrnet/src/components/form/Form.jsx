@@ -13,6 +13,7 @@ import {
   checkValidForm,
   submitForm,
 } from "../../redux/actions";
+import { Modale } from "plugin_modale";
 
 //selection de départements
 /**
@@ -110,6 +111,8 @@ function Form() {
   const [stateError, setStateError] = useState("");
   const [zipCodeError, setZipCodeError] = useState("");
   const [departmentError, setDepartmentError] = useState("");
+
+  const [modale, setModale] = useState(false);
 
   /**
    * Vérifie la validité des données du formulaire et affiche les erreurs appropriées.
@@ -258,6 +261,7 @@ function Form() {
 
     if (submit) {
       dispatch(submitForm(employee));
+      setModale(true);
     } else {
       return err;
     }
@@ -355,7 +359,9 @@ function Form() {
 
       <div className="button-save">
         <button onClick={saveEmployee}> Save </button>
-        <div id="confirmation" className="modal"></div>
+        <div id="confirmation" className="modal">
+          {modale && <Modale closeModale={setModale} />}
+        </div>
       </div>
     </>
   );

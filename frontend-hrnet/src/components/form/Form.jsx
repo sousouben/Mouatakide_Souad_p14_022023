@@ -13,7 +13,7 @@ import {
   checkValidForm,
   submitForm,
 } from "../../redux/actions";
-//import Modale from "plugin_modale";
+import { Modal } from "modal_oc";
 
 //selection de départements
 /**
@@ -112,7 +112,7 @@ function Form() {
   const [zipCodeError, setZipCodeError] = useState("");
   const [departmentError, setDepartmentError] = useState("");
 
-  //const [modale, setModale] = useState(false);
+  const [modal, setModal] = useState(false);
 
   /**
    * Vérifie la validité des données du formulaire et affiche les erreurs appropriées.
@@ -217,13 +217,7 @@ function Form() {
     code: zipCode,
     department: department.label,
   };
-  console.log(employee);
 
-  /**
-   * Vérifie le formulaire pour voir s'il est valide ou non.
-   * @function
-   * @returns {boolean} - True si le formulaire est invalide, sinon false.
-   */
   const checkForm = () => {
     if (
       firstName === "" ||
@@ -238,22 +232,12 @@ function Form() {
       birthDate.getFullYear() >= new Date().getFullYear() - 18
     ) {
       dispatch(unvalidForm());
-      console.log("unvalidForm");
     } else {
       dispatch(validForm());
-      console.log("validForm");
     }
   };
 
-  /**
-   * Enregistre un employé dans la base de données après avoir vérifié la validité du formulaire et effectué les vérifications nécessaires.
-   * @async
-   * @function saveEmployee
-   * @param {Event} e - L'événement de soumission de formulaire.
-   * @returns {Promise|boolean} - Retourne true si le formulaire est valide et soumis avec succès, ou une erreur (un objet) si le formulaire n'est pas valide.
-   */
   const saveEmployee = async (e) => {
-    console.log(startDate.getTime());
     e.preventDefault();
     checkForm();
     const submit = dispatch(checkValidForm());
@@ -261,10 +245,16 @@ function Form() {
 
     if (submit) {
       dispatch(submitForm(employee));
-      //setModale(true);
+      setModal(true);
     } else {
       return err;
     }
+  };
+  const resetFormCloseModal = () => {
+    document.getElementById("formulaire").reset();
+    setModal(false);
+    setBirthDate(new Date());
+    setStartDate(new Date());
   };
 
   return (
@@ -359,6 +349,12 @@ function Form() {
 
       <div className="button-save">
         <button onClick={saveEmployee}> Save </button>
+        {modal && (
+          <Modal
+            message={"employee created"}
+            closeModal={resetFormCloseModal}
+          />
+        )}
       </div>
     </>
   );

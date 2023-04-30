@@ -13,9 +13,9 @@ import {
   checkValidForm,
   submitForm,
 } from "../../redux/actions";
-import { Modal } from "modal_oc";
+//import { Modal } from "modal_oc";
 
-//import Modal from "../modal/Modal";
+import Modal from "../modal/Modal";
 
 //selection de départements
 /**

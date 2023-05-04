@@ -45,7 +45,7 @@ form input {
   color: white;
 }
 
-.button-save button {
+.button-save .button_btn {
   width: 150px;
   background-color: rgb(68, 97, 68);
   color: white;

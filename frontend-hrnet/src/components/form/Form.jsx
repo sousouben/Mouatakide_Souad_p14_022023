@@ -349,7 +349,10 @@ function Form() {
       </form>
 
       <div className="button-save">
-        <button onClick={saveEmployee}> Save </button>
+        <button className="button_btn" onClick={saveEmployee}>
+          {" "}
+          Save{" "}
+        </button>
         {modal && (
           <Modal
             message={"employee created"}

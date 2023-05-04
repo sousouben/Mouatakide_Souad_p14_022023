@@ -9,10 +9,12 @@ const Header = () => {
       <header className="header">
         <div className="logo">
           <img src={logo} alt="logo Wealth Health" />
-          <h1> HRnet</h1>
+          <Link to="/">
+            <h1> HRnet</h1>
+          </Link>
         </div>
         <nav>
-          <Link to="/">Create employee</Link>
+          <Link to="/create_employees">Create employee</Link>
           <Link to="/employees">Current employees</Link>
         </nav>
       </header>

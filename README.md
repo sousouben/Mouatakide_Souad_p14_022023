@@ -5,9 +5,9 @@
 ---
 
 - ![Author](<https://img.shields.io/badge/Author-Souad Mouatakide-">)
-- ![GitHub P14_HRnet_React size](https://img.shields.io/github/repo-size/sousouben/plugin_modale)
-- ![GitHub top language](https://img.shields.io/github/languages/top/sousouben/plugin_modale)
-- ![GitHub language count](https://img.shields.io/github/languages/count/sousouben/plugin_modale)
+- ![GitHub P14_HRnet_React size](https://img.shields.io/github/repo-size/sousouben/Mouatakide_Souad_p14_022023)
+- ![GitHub top language](https://img.shields.io/github/languages/top/sousouben/Mouatakide_Souad_p14_022023)
+- ![GitHub language count](https://img.shields.io/github/languages/count/sousouben/Mouatakide_Souad_p14_022023)
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -33,7 +33,7 @@ https://github.com/sousouben/Mouatakide_Souad_p14_022023.git
 # avec NPM
 npm install
 # avec Yarn
-yarn
+yarn install
 ```
 
 #### Lancement du projet.

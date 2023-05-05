@@ -5,6 +5,9 @@ import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { selectEmployees } from "../../redux/selector";
 
+/**
+ * Création des colonnes du tableau avec les noms des colonnes et les valeurs correspondantes pour chaque employé
+ */
 const columns = [
   {
     name: "First Name",
@@ -71,6 +74,9 @@ const columns = [
   },
 ];
 
+/**
+ * Les données des employés stockées dans un tableau
+ */
 const data = [
   {
     id: 1,
@@ -374,6 +380,16 @@ const data = [
   },
 ];
 console.log(data);
+
+/**
+ *
+ * Composant de filtre pour la recherche d'employés.
+ * @param {string} filterText - Le texte de recherche actuel.
+ * @param {function} onFilter - Fonction de rappel pour la mise à jour du filtre.
+ * @param {function} onClear - Fonction de rappel pour effacer le filtre.
+ * @returns {JSX.Element} - Composant de filtre de recherche.
+ *
+ */
 const FilterComponent = ({ filterText, onFilter, onClear }) => (
   <>
     <input
@@ -389,6 +405,12 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
     </button>
   </>
 );
+
+/**
+ * Composant pour afficher la liste d'employés et les fonctionnalités de recherche.
+ * @returns {JSX.Element} - Composant de liste d'employés.
+ *
+ */
 function DataList() {
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
@@ -408,6 +430,11 @@ function DataList() {
       data.code.toLowerCase().includes(filterText.toLowerCase())
   );
 
+  /**
+   * Composant de filtre de recherche avec la fonction de gestion pour effacer le filtre.
+   * @returns {JSX.Element} - Composant de filtre de recherche.
+   *
+   */
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
       if (filterText) {

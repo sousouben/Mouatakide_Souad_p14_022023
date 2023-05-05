@@ -29,6 +29,11 @@ const departments = [
   "Legal",
 ];
 
+/**
+ * Tableau pour stocker les états filtrés.
+ * @type {any[]}
+ *
+ */
 let tabStatesFilter = [];
 
 /**
@@ -90,6 +95,11 @@ function formatDate(date) {
 
 let employee = [];
 
+/**
+ * Composant représentant un formulaire pour ajouter un employé
+ * @returns {JSX.Element} Retourne le formulaire d'ajout d'employé
+ *
+ */
 function Form() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -238,6 +248,13 @@ function Form() {
     }
   };
 
+  /**
+   * Enregistre un nouvel employé dans le système.
+   * @async
+   * @function saveEmployee
+   * @param {Event} e - L'événement de l'action déclenchant l'appel à la fonction.
+   * @returns {Promise<string>} - Une promesse qui retourne une chaîne de caractères si l'enregistrement de l'employé échoue.
+   */
   const saveEmployee = async (e) => {
     e.preventDefault();
     checkForm();
@@ -251,6 +268,13 @@ function Form() {
       return err;
     }
   };
+
+  /**
+   * Réinitialise le formulaire et ferme la fenêtre modale.
+   * @function
+   * @returns {void}
+   *
+   */
   const resetFormCloseModal = () => {
     document.getElementById("formulaire").reset();
     setModal(false);
@@ -348,6 +372,14 @@ function Form() {
         </section>
       </form>
 
+      {/**
+       * Composant qui affiche un bouton "Sauvegarder" et un Modal en fonction de l'état de la variable 'modal'
+       * @component
+       * @param {Function} saveEmployee - Fonction qui sera exécutée lors du clic sur le bouton 'Save'
+       * @param {Boolean} modal - Booléen qui indique si le Modal doit être affiché ou non
+       * @param {Function} resetFormCloseModal - Fonction qui remet à zéro le formulaire et ferme le Modal
+       * @returns {JSX.Element} Composant react qui affiche un bouton "Sauvegarder" et un Modal
+       */}
       <div className="button-save">
         <button className="button_btn" onClick={saveEmployee}>
           {" "}

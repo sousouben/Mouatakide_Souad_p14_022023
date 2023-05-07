@@ -1,0 +1,22 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.error__title {
+  font-size: 150px;
+  font-weight: 700;
+  color: rgb(68, 97, 68);
+}
+
+.error__content {
+  font-weight: 500;
+  font-size: 26px;
+}
+
+.error__link {
+  color: inherit;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
       </div>
       <div className="card">
         <button className="home_card">
-          <FontAwesomeIcon icon={faPlus} />{" "}
+          <FontAwesomeIcon icon={faUserPlus} />{" "}
           <Link to="/create_employees">Create employee</Link>
         </button>
         <button className="home_card">

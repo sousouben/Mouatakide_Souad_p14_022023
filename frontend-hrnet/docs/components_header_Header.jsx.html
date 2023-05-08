@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/createEmployees/CreateEmployees.jsx</title>
+    <title>JSDoc: Source: components/header/Header.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/createEmployees/CreateEmployees.jsx</h1>
+    <h1 class="page-title">Source: components/header/Header.jsx</h1>
 
     
 
@@ -26,25 +26,61 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
-import Form from "../../components/form/Form";
-import "./createEmployees.css";
+            <pre class="prettyprint source linenums"><code>import { NavLink, useLocation } from "react-router-dom";
+import "./header.css";
+import logo from "../../assets/logo Wealth_Health.jpg";
 
 /**
- * Composant pour la création d'un employé
- * @function
- * @returns {JSX.Element} - Le composant de création d'un employé
+ * Composant Header qui affiche le logo et les liens de navigation.
+ * @returns {JSX.Element} Composant Header
  */
-const CreateEmployees = () => {
+const Header = () => {
+  const location = useLocation();
+  let activeClassName = "display";
+
   return (
-    &lt;main>
-      &lt;h2 className="create">Create Employee&lt;/h2>
-      &lt;Form />
-    &lt;/main>
+    &lt;>
+      &lt;header className="header">
+        &lt;div className="logo">
+          &lt;img src={logo} alt="logo Wealth Health" />
+          &lt;NavLink to="/">
+            &lt;h1> HRnet&lt;/h1>
+          &lt;/NavLink>
+        &lt;/div>
+        &lt;nav>
+          &lt;ul>
+            {location.pathname !== "/" &amp;&amp; (
+              &lt;li>
+                &lt;NavLink
+                  to="/employees"
+                  className={({ isActive }) =>
+                    isActive ? activeClassName : undefined
+                  }
+                >
+                  Current Employees
+                &lt;/NavLink>
+              &lt;/li>
+            )}
+            {location.pathname !== "/" &amp;&amp; (
+              &lt;li>
+                &lt;NavLink
+                  to="/create_employees"
+                  className={({ isActive }) =>
+                    isActive ? activeClassName : undefined
+                  }
+                >
+                  Create Employees
+                &lt;/NavLink>
+              &lt;/li>
+            )}
+          &lt;/ul>
+        &lt;/nav>
+      &lt;/header>
+    &lt;/>
   );
 };
 
-export default CreateEmployees;
+export default Header;
 </code></pre>
         </article>
     </section>

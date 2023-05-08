@@ -6,6 +6,11 @@ import CurrentEmployees from "./pages/currentEmployees/CurrentEmployees";
 import Home from "./pages/home/Home";
 import Error from "./pages/error/Error";
 
+/**
+ * Composant principal de l'application, qui gère le routage et affiche les différentes pages.
+ * @returns {JSX.Element} Composant App
+ *
+ */
 function App() {
   return (
     <div className="app">

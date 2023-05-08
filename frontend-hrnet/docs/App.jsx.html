@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/createEmployees/CreateEmployees.jsx</title>
+    <title>JSDoc: Source: App.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/createEmployees/CreateEmployees.jsx</h1>
+    <h1 class="page-title">Source: App.jsx</h1>
 
     
 
@@ -27,24 +27,33 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import Form from "../../components/form/Form";
-import "./createEmployees.css";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/header/Header";
+import CreateEmployees from "./pages/createEmployees/CreateEmployees";
+import CurrentEmployees from "./pages/currentEmployees/CurrentEmployees";
+import Home from "./pages/home/Home";
+import Error from "./pages/error/Error";
 
 /**
- * Composant pour la création d'un employé
- * @function
- * @returns {JSX.Element} - Le composant de création d'un employé
+ * Composant principal de l'application, qui gère le routage et affiche les différentes pages.
+ * @returns {JSX.Element} Composant App
+ *
  */
-const CreateEmployees = () => {
+function App() {
   return (
-    &lt;main>
-      &lt;h2 className="create">Create Employee&lt;/h2>
-      &lt;Form />
-    &lt;/main>
+    &lt;div className="app">
+      &lt;Header />
+      &lt;Routes>
+        &lt;Route path="/" element={&lt;Home />}>&lt;/Route>
+        &lt;Route path="/employees" element={&lt;CurrentEmployees />}>&lt;/Route>
+        &lt;Route path="/create_employees" element={&lt;CreateEmployees />}>&lt;/Route>
+        &lt;Route path="*" element={&lt;Error />}>&lt;/Route>
+      &lt;/Routes>
+    &lt;/div>
   );
-};
+}
 
-export default CreateEmployees;
+export default App;
 </code></pre>
         </article>
     </section>

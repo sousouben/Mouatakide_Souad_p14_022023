@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faUsers } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Composant Home qui affiche la page d'accueil de l'application HRnet.
+ * @returns {JSX.Element} Composant Home
+ *
+ */
 const Home = () => {
   return (
     <main>

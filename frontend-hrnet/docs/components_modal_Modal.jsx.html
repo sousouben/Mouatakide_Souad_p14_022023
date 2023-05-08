@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/createEmployees/CreateEmployees.jsx</title>
+    <title>JSDoc: Source: components/modal/Modal.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/createEmployees/CreateEmployees.jsx</h1>
+    <h1 class="page-title">Source: components/modal/Modal.jsx</h1>
 
     
 
@@ -27,24 +27,40 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import Form from "../../components/form/Form";
-import "./createEmployees.css";
+import "./modal.css";
 
 /**
- * Composant pour la création d'un employé
- * @function
- * @returns {JSX.Element} - Le composant de création d'un employé
+ * Composant Modal qui affiche une fenêtre modale avec un message et un bouton de fermeture.
+ * @param {object} props - Les propriétés du composant.
+ * @param {function} props.closeModal - Fonction qui ferme la fenêtre modale.
+ * @param {string} props.message - Message à afficher dans la fenêtre modale.
+ * @returns {JSX.Element} Composant Modal
+ *
  */
-const CreateEmployees = () => {
+function Modal({ closeModal, message }) {
   return (
-    &lt;main>
-      &lt;h2 className="create">Create Employee&lt;/h2>
-      &lt;Form />
-    &lt;/main>
-  );
-};
+    &lt;>
+      &lt;div className="bcgModal">
+        &lt;div className="modal-wrapper">
+          &lt;div className="modal">
+            &lt;button
+              type="button"
+              className="modal-close-button"
+              onClick={() => closeModal(false)}
+            >
+              {" "}
+              X{" "}
+            &lt;/button>
 
-export default CreateEmployees;
+            &lt;p>{message}&lt;/p>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/>
+  );
+}
+
+export default Modal;
 </code></pre>
         </article>
     </section>

@@ -2,6 +2,10 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./header.css";
 import logo from "../../assets/logo Wealth_Health.jpg";
 
+/**
+ * Composant Header qui affiche le logo et les liens de navigation.
+ * @returns {JSX.Element} Composant Header
+ */
 const Header = () => {
   const location = useLocation();
   let activeClassName = "display";

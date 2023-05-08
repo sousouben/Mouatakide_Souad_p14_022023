@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/createEmployees/CreateEmployees.jsx</title>
+    <title>JSDoc: Source: pages/error/Error.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/createEmployees/CreateEmployees.jsx</h1>
+    <h1 class="page-title">Source: pages/error/Error.jsx</h1>
 
     
 
@@ -27,24 +27,28 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import Form from "../../components/form/Form";
-import "./createEmployees.css";
+import "./error.css";
+import { Link } from "react-router-dom";
 
 /**
- * Composant pour la création d'un employé
- * @function
- * @returns {JSX.Element} - Le composant de création d'un employé
+ * Composant Error qui affiche une page d'erreur 404 avec un message et un lien de retour à la page d'accueil.
+ * @returns {JSX.Element} Composant Error
  */
-const CreateEmployees = () => {
+const Error = () => {
   return (
-    &lt;main>
-      &lt;h2 className="create">Create Employee&lt;/h2>
-      &lt;Form />
-    &lt;/main>
+    &lt;div className="error">
+      &lt;div className="error__title">404&lt;/div>
+      &lt;p className="error__content">
+        Oups! La page que vous demandez n'existe pas.
+      &lt;/p>
+      &lt;Link className="error__link" to="/">
+        Retourner sur la page d’accueil
+      &lt;/Link>
+    &lt;/div>
   );
 };
 
-export default CreateEmployees;
+export default Error;
 </code></pre>
         </article>
     </section>

@@ -2,6 +2,10 @@ import React from "react";
 import "./error.css";
 import { Link } from "react-router-dom";
 
+/**
+ * Composant Error qui affiche une page d'erreur 404 avec un message et un lien de retour à la page d'accueil.
+ * @returns {JSX.Element} Composant Error
+ */
 const Error = () => {
   return (
     <div className="error">

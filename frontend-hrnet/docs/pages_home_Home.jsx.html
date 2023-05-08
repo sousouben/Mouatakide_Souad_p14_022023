@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/createEmployees/CreateEmployees.jsx</title>
+    <title>JSDoc: Source: pages/home/Home.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/createEmployees/CreateEmployees.jsx</h1>
+    <h1 class="page-title">Source: pages/home/Home.jsx</h1>
 
     
 
@@ -27,24 +27,43 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import Form from "../../components/form/Form";
-import "./createEmployees.css";
+import "./home.css";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 /**
- * Composant pour la création d'un employé
- * @function
- * @returns {JSX.Element} - Le composant de création d'un employé
+ * Composant Home qui affiche la page d'accueil de l'application HRnet.
+ * @returns {JSX.Element} Composant Home
+ *
  */
-const CreateEmployees = () => {
+const Home = () => {
   return (
     &lt;main>
-      &lt;h2 className="create">Create Employee&lt;/h2>
-      &lt;Form />
+      &lt;div className="home_header">
+        &lt;h2 className="home">Bienvenue sur la nouvelle version HRnet&lt;/h2>
+        &lt;br />
+        &lt;p className="home_texte">
+          votre portail de gestion des employés WealthHealth. Nous sommes ravis
+          de vous présenter notre nouvelle application, qui a été entièrement
+          repensée et mise à jour pour répondre aux besoins de votre entreprise.
+        &lt;/p>
+      &lt;/div>
+      &lt;div className="card">
+        &lt;button className="home_card">
+          &lt;FontAwesomeIcon icon={faUserPlus} />{" "}
+          &lt;Link to="/create_employees">Create employee&lt;/Link>
+        &lt;/button>
+        &lt;button className="home_card">
+          &lt;FontAwesomeIcon icon={faUsers} />{" "}
+          &lt;Link to="/employees">Current employees&lt;/Link>
+        &lt;/button>
+      &lt;/div>
     &lt;/main>
   );
 };
 
-export default CreateEmployees;
+export default Home;
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/createEmployees/CreateEmployees.jsx</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/createEmployees/CreateEmployees.jsx</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
@@ -27,24 +27,34 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
-import Form from "../../components/form/Form";
-import "./createEmployees.css";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 /**
- * Composant pour la création d'un employé
- * @function
- * @returns {JSX.Element} - Le composant de création d'un employé
+ * Point d'entrée de l'application React.
+ * Rend le composant racine "App" dans le DOM.
+ * Utilise un root React pour améliorer les performances de rendu.
+ * Utilise le composant BrowserRouter pour gérer la navigation entre les pages.
+ * Utilise le composant Provider pour fournir le store Redux à l'application.
+ * @module index
  */
-const CreateEmployees = () => {
-  return (
-    &lt;main>
-      &lt;h2 className="create">Create Employee&lt;/h2>
-      &lt;Form />
-    &lt;/main>
-  );
-};
 
-export default CreateEmployees;
+// Crée un root React pour améliorer les performances de rendu.
+const root = ReactDOM.createRoot(document.getElementById("root"));
+// Rend le composant racine App dans le DOM.
+root.render(
+  &lt;React.StrictMode>
+    &lt;Provider store={store}>
+      &lt;BrowserRouter>
+        &lt;App />
+      &lt;/BrowserRouter>
+    &lt;/Provider>
+  &lt;/React.StrictMode>
+);
 </code></pre>
         </article>
     </section>

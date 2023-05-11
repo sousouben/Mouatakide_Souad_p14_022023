@@ -280,6 +280,8 @@ function Form() {
     setModal(false);
     setBirthDate(new Date());
     setStartDate(new Date());
+    setDepartment("");
+    setState("");
   };
 
   return (
@@ -348,6 +350,7 @@ function Form() {
             name="stateList"
             options={statesNames}
             onChange={setState}
+            value={state}
           />
           {stateError && <p className="error-message">{stateError}</p>}
 
@@ -365,6 +368,7 @@ function Form() {
             name="departments"
             options={departments}
             onChange={setDepartment}
+            value={department}
           />
           {departmentError && (
             <p className="error-message">{departmentError}</p>

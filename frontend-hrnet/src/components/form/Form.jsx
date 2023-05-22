@@ -63,29 +63,11 @@ const statesNames = getStatesNames(states);
  * @returns {string} La date formatée au format "MM/JJ/AAAA".
  */
 function formatDate(date) {
-  const inputDate = new Date(date);
+  const dateNew = new Date(date);
+  const dateISO = dateNew.toISOString().split("T")[0];
+  const [year, month, day] = dateISO.split(".");
 
-  // Vérifier que la date en entrée est valide
-  if (isNaN(inputDate.getTime())) {
-    throw new Error("Invalid date");
-  }
-
-  // Vérifier si la date correspond à un anniversaire en dessous de 15 ans
-  const now = new Date();
-  const ageDiffMs = now.getTime() - inputDate.getTime();
-  const ageDate = new Date(ageDiffMs);
-  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
-  if (age < 15) {
-    inputDate.setFullYear(2008); // Modifier l'année de naissance à 2008 (15 ans en 2023)
-  }
-
-  // Formater la date au format "MM/DD/YYYY"
-  const isoDate = inputDate.toISOString().split("T")[0];
-  const [year, month, day] = isoDate.split(".");
-  const formattedDate = [day, month, year].join("");
-
-  return formattedDate;
+  return [month, day, year].join("");
 }
 
 //fin dataPicker
@@ -164,20 +146,17 @@ function Form() {
       setStartDateError("Please select a start date.");
       isError = true;
     } else {
-      const now = Date.now();
-      if (startDate.getTime() > now) {
-        setStartDateError("Start date cannot be in the future.");
+      const ageDiffMs = startDate.getTime() - birthDate.getTime();
+      const ageDate = new Date(ageDiffMs);
+      const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      if (age < 15) {
+        setStartDateError("You must be at least 15 years old to start.");
+        isError = true;
+      } else if (startDate.getTime() === birthDate.getTime()) {
+        setStartDateError("Start date cannot be the same as the birth date.");
         isError = true;
       } else {
-        const ageDiffMs = startDate.getTime() - birthDate.getTime();
-        const ageDate = new Date(ageDiffMs);
-        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 15) {
-          setStartDateError("You must be at least 15 years old to start.");
-          isError = true;
-        } else {
-          setStartDateError("");
-        }
+        setStartDateError("");
       }
     }
     if (!street) {
@@ -254,15 +233,14 @@ function Form() {
    */
   const saveEmployee = async (e) => {
     e.preventDefault();
+    const isError = validateForm();
     checkForm();
-    const submit = dispatch(checkValidForm());
-    const err = validateForm();
-
-    if (submit) {
-      dispatch(submitForm(employee));
-      setModal(true);
-    } else {
-      return err;
+    if (!isError) {
+      const submit = dispatch(checkValidForm());
+      if (submit) {
+        dispatch(submitForm(employee));
+        setModal(true);
+      }
     }
   };
 

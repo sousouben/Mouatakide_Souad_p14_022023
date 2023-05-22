@@ -77,7 +77,7 @@ const columns = [
 /**
  * Les données des employés stockées dans un tableau
  */
-const data = [
+/*const data = [
   {
     id: 1,
     first: "Souad",
@@ -378,8 +378,7 @@ const data = [
     code: "16013",
     department: "Legal",
   },
-];
-console.log(data);
+];*/
 
 /**
  *

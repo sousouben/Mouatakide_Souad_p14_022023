@@ -13,23 +13,25 @@ const Home = () => {
   return (
     <main>
       <div className="home_header">
-        <h2 className="home">Bienvenue sur la nouvelle version HRnet</h2>
+        <h2 className="home">Welcome to the new HRnet version</h2>
         <br />
         <p className="home_texte">
-          votre portail de gestion des employés WealthHealth. Nous sommes ravis
-          de vous présenter notre nouvelle application, qui a été entièrement
-          repensée et mise à jour pour répondre aux besoins de votre entreprise.
+          Your WealthHealth employee management portal. We're excited to
+          introduce our new app, which has been completely redesigned and
+          updated to meet your business needs.
         </p>
       </div>
       <div className="card">
-        <button className="home_card">
-          <FontAwesomeIcon icon={faUserPlus} />{" "}
-          <Link to="/create_employees">Create employee</Link>
-        </button>
-        <button className="home_card">
-          <FontAwesomeIcon icon={faUsers} />{" "}
-          <Link to="/employees">Current employees</Link>
-        </button>
+        <Link to="/create_employees">
+          <button className="home_card">
+            <FontAwesomeIcon icon={faUserPlus} /> Create employee
+          </button>
+        </Link>
+        <Link to="/employees">
+          <button className="home_card">
+            <FontAwesomeIcon icon={faUsers} /> Current employees
+          </button>
+        </Link>
       </div>
     </main>
   );

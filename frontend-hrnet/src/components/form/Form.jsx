@@ -278,10 +278,40 @@ function Form() {
   const resetFormCloseModal = () => {
     document.getElementById("formulaire").reset();
     setModal(false);
+    setFirstName("");
+    setLastName("");
+    setCity("");
     setBirthDate(new Date());
     setStartDate(new Date());
     setDepartment("");
     setState("");
+  };
+
+  const handleChangeFirstName = (e) => {
+    const value = e.target.value;
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alpha
+
+    if (alphaRegex.test(value)) {
+      setFirstName(value);
+    }
+  };
+
+  const handleChangeLastName = (e) => {
+    const value = e.target.value;
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alpha
+
+    if (alphaRegex.test(value)) {
+      setLastName(value);
+    }
+  };
+
+  const handleChangeCity = (e) => {
+    const value = e.target.value;
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alpha
+
+    if (alphaRegex.test(value)) {
+      setCity(value);
+    }
   };
 
   return (
@@ -293,7 +323,9 @@ function Form() {
             type="text"
             id="first"
             name="first"
-            onChange={(e) => setFirstName(e.target.value)}
+            maxLength={50}
+            value={firstName}
+            onChange={handleChangeFirstName}
           />
           {firstNameError && <p className="error-message">{firstNameError}</p>}
 
@@ -302,7 +334,9 @@ function Form() {
             type="text"
             id="last"
             name="last"
-            onChange={(e) => setLastName(e.target.value)}
+            maxLength={50}
+            value={lastName}
+            onChange={handleChangeLastName}
           />
           {lastNameError && <p className="error-message">{lastNameError}</p>}
 
@@ -331,6 +365,7 @@ function Form() {
             id="street"
             type="text"
             name="street"
+            maxLength={50}
             onChange={(e) => setStreet(e.target.value)}
           />
           {streetError && <p className="error-message">{streetError}</p>}
@@ -340,7 +375,9 @@ function Form() {
             id="city"
             type="text"
             name="city"
-            onChange={(e) => setCity(e.target.value)}
+            maxLength={50}
+            value={city}
+            onChange={handleChangeCity}
           />
           {cityError && <p className="error-message">{cityError}</p>}
 
@@ -359,6 +396,7 @@ function Form() {
             id="zip-code"
             type="number"
             name="code"
+            maxLength={10}
             onChange={(e) => setZipCode(e.target.value)}
           />
           {zipCodeError && <p className="error-message">{zipCodeError}</p>}

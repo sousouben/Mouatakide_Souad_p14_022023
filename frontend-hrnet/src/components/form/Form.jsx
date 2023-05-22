@@ -77,9 +77,6 @@ function formatDate(date) {
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
   if (age < 15) {
-    console.log(
-      "Sorry, you must be at least 15 years old to use this feature."
-    );
     inputDate.setFullYear(2008); // Modifier l'année de naissance à 2008 (15 ans en 2023)
   }
 

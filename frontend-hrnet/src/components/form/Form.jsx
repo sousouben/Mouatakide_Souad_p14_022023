@@ -70,17 +70,17 @@ function formatDate(date) {
     throw new Error("Invalid date");
   }
 
-  // Vérifier si la date correspond à un anniversaire en dessous de 18 ans
+  // Vérifier si la date correspond à un anniversaire en dessous de 15 ans
   const now = new Date();
   const ageDiffMs = now.getTime() - inputDate.getTime();
   const ageDate = new Date(ageDiffMs);
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
-  if (age < 18) {
+  if (age < 15) {
     console.log(
-      "Sorry, you must be at least 18 years old to use this feature."
+      "Sorry, you must be at least 15 years old to use this feature."
     );
-    inputDate.setFullYear(2005); // Modifier l'année de naissance à 2005 (18 ans en 2023)
+    inputDate.setFullYear(2008); // Modifier l'année de naissance à 2008 (15 ans en 2023)
   }
 
   // Formater la date au format "MM/DD/YYYY"
@@ -155,7 +155,7 @@ function Form() {
         const ageDiffMs = now.getTime() - birthDate.getTime();
         const ageDate = new Date(ageDiffMs);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 18) {
+        if (age < 15) {
           setBirthDateError("Your date of birth is not valid.");
           isError = true;
         } else {
@@ -175,8 +175,8 @@ function Form() {
         const ageDiffMs = startDate.getTime() - birthDate.getTime();
         const ageDate = new Date(ageDiffMs);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 18) {
-          setStartDateError("You must be at least 18 years old to start.");
+        if (age < 15) {
+          setStartDateError("You must be at least 15 years old to start.");
           isError = true;
         } else {
           setStartDateError("");
@@ -240,7 +240,7 @@ function Form() {
       department === "" ||
       birthDate === new Date() ||
       startDate === new Date() ||
-      birthDate.getFullYear() >= new Date().getFullYear() - 18
+      birthDate.getFullYear() >= new Date().getFullYear() - 15
     ) {
       dispatch(unvalidForm());
     } else {

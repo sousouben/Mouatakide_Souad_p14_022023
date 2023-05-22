@@ -287,27 +287,42 @@ function Form() {
     setState("");
   };
 
+  /**
+   * Fonction de gestion du changement de prénom.
+   * @param {Event} e - L'événement de changement.
+   * @returns {void}
+   */
   const handleChangeFirstName = (e) => {
     const value = e.target.value;
-    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alpha
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alphabétiques
 
     if (alphaRegex.test(value)) {
       setFirstName(value);
     }
   };
 
+  /**
+   * Fonction de gestion du changement de nom de famille.
+   * @param {Event} e - L'événement de changement.
+   * @returns {void}
+   */
   const handleChangeLastName = (e) => {
     const value = e.target.value;
-    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alpha
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alphabétiques
 
     if (alphaRegex.test(value)) {
       setLastName(value);
     }
   };
 
+  /**
+   * Fonction de gestion du changement de la ville.
+   * @param {Event} e - L'événement de changement.
+   * @returns {void}
+   */
   const handleChangeCity = (e) => {
     const value = e.target.value;
-    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alpha
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alphabétiques
 
     if (alphaRegex.test(value)) {
       setCity(value);

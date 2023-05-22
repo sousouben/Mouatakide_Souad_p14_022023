@@ -98,17 +98,17 @@ function formatDate(date) {
     throw new Error("Invalid date");
   }
 
-  // Vérifier si la date correspond à un anniversaire en dessous de 18 ans
+  // Vérifier si la date correspond à un anniversaire en dessous de 15 ans
   const now = new Date();
   const ageDiffMs = now.getTime() - inputDate.getTime();
   const ageDate = new Date(ageDiffMs);
   const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
-  if (age &lt; 18) {
+  if (age &lt; 15) {
     console.log(
-      "Sorry, you must be at least 18 years old to use this feature."
+      "Sorry, you must be at least 15 years old to use this feature."
     );
-    inputDate.setFullYear(2005); // Modifier l'année de naissance à 2005 (18 ans en 2023)
+    inputDate.setFullYear(2008); // Modifier l'année de naissance à 2008 (15 ans en 2023)
   }
 
   // Formater la date au format "MM/DD/YYYY"
@@ -183,7 +183,7 @@ function Form() {
         const ageDiffMs = now.getTime() - birthDate.getTime();
         const ageDate = new Date(ageDiffMs);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age &lt; 18) {
+        if (age &lt; 15) {
           setBirthDateError("Your date of birth is not valid.");
           isError = true;
         } else {
@@ -203,8 +203,8 @@ function Form() {
         const ageDiffMs = startDate.getTime() - birthDate.getTime();
         const ageDate = new Date(ageDiffMs);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age &lt; 18) {
-          setStartDateError("You must be at least 18 years old to start.");
+        if (age &lt; 15) {
+          setStartDateError("You must be at least 15 years old to start.");
           isError = true;
         } else {
           setStartDateError("");
@@ -268,7 +268,7 @@ function Form() {
       department === "" ||
       birthDate === new Date() ||
       startDate === new Date() ||
-      birthDate.getFullYear() >= new Date().getFullYear() - 18
+      birthDate.getFullYear() >= new Date().getFullYear() - 15
     ) {
       dispatch(unvalidForm());
     } else {
@@ -306,8 +306,55 @@ function Form() {
   const resetFormCloseModal = () => {
     document.getElementById("formulaire").reset();
     setModal(false);
+    setFirstName("");
+    setLastName("");
+    setCity("");
     setBirthDate(new Date());
     setStartDate(new Date());
+    setDepartment("");
+    setState("");
+  };
+
+  /**
+   * Fonction de gestion du changement de prénom.
+   * @param {Event} e - L'événement de changement.
+   * @returns {void}
+   */
+  const handleChangeFirstName = (e) => {
+    const value = e.target.value;
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alphabétiques
+
+    if (alphaRegex.test(value)) {
+      setFirstName(value);
+    }
+  };
+
+  /**
+   * Fonction de gestion du changement de nom de famille.
+   * @param {Event} e - L'événement de changement.
+   * @returns {void}
+   */
+  const handleChangeLastName = (e) => {
+    const value = e.target.value;
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alphabétiques
+
+    if (alphaRegex.test(value)) {
+      setLastName(value);
+    }
+  };
+
+  /**
+   * Fonction de gestion du changement de la ville.
+   * @param {Event} e - L'événement de changement.
+   * @returns {void}
+   */
+  const handleChangeCity = (e) => {
+    const value = e.target.value;
+    const alphaRegex = /^[a-zA-Z]*$/; // Expression régulière pour les caractères alphabétiques
+
+    if (alphaRegex.test(value)) {
+      setCity(value);
+    }
   };
 
   return (
@@ -319,7 +366,9 @@ function Form() {
             type="text"
             id="first"
             name="first"
-            onChange={(e) => setFirstName(e.target.value)}
+            maxLength={50}
+            value={firstName}
+            onChange={handleChangeFirstName}
           />
           {firstNameError &amp;&amp; &lt;p className="error-message">{firstNameError}&lt;/p>}
 
@@ -328,7 +377,9 @@ function Form() {
             type="text"
             id="last"
             name="last"
-            onChange={(e) => setLastName(e.target.value)}
+            maxLength={50}
+            value={lastName}
+            onChange={handleChangeLastName}
           />
           {lastNameError &amp;&amp; &lt;p className="error-message">{lastNameError}&lt;/p>}
 
@@ -357,6 +408,7 @@ function Form() {
             id="street"
             type="text"
             name="street"
+            maxLength={50}
             onChange={(e) => setStreet(e.target.value)}
           />
           {streetError &amp;&amp; &lt;p className="error-message">{streetError}&lt;/p>}
@@ -366,7 +418,9 @@ function Form() {
             id="city"
             type="text"
             name="city"
-            onChange={(e) => setCity(e.target.value)}
+            maxLength={50}
+            value={city}
+            onChange={handleChangeCity}
           />
           {cityError &amp;&amp; &lt;p className="error-message">{cityError}&lt;/p>}
 
@@ -376,6 +430,7 @@ function Form() {
             name="stateList"
             options={statesNames}
             onChange={setState}
+            value={state}
           />
           {stateError &amp;&amp; &lt;p className="error-message">{stateError}&lt;/p>}
 
@@ -384,6 +439,7 @@ function Form() {
             id="zip-code"
             type="number"
             name="code"
+            maxLength={10}
             onChange={(e) => setZipCode(e.target.value)}
           />
           {zipCodeError &amp;&amp; &lt;p className="error-message">{zipCodeError}&lt;/p>}
@@ -393,6 +449,7 @@ function Form() {
             name="departments"
             options={departments}
             onChange={setDepartment}
+            value={department}
           />
           {departmentError &amp;&amp; (
             &lt;p className="error-message">{departmentError}&lt;/p>
@@ -435,13 +492,13 @@ export default Form;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-index.html">index</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CreateEmployees">CreateEmployees</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#DataList">DataList</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#FilterComponent">FilterComponent</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#checkValidForm">checkValidForm</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#data">data</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getStatesNames">getStatesNames</a></li><li><a href="global.html#saveEmployee">saveEmployee</a></li><li><a href="global.html#selectEmployees">selectEmployees</a></li><li><a href="global.html#statesNames">statesNames</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#tabStatesFilter">tabStatesFilter</a></li><li><a href="global.html#unvalidForm">unvalidForm</a></li><li><a href="global.html#validForm">validForm</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-index.html">index</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CreateEmployees">CreateEmployees</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#DataList">DataList</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#FilterComponent">FilterComponent</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#checkValidForm">checkValidForm</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getStatesNames">getStatesNames</a></li><li><a href="global.html#saveEmployee">saveEmployee</a></li><li><a href="global.html#selectEmployees">selectEmployees</a></li><li><a href="global.html#statesNames">statesNames</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#tabStatesFilter">tabStatesFilter</a></li><li><a href="global.html#unvalidForm">unvalidForm</a></li><li><a href="global.html#validForm">validForm</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 08 2023 10:56:51 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 22 2023 15:48:19 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

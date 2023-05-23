@@ -91,32 +91,11 @@ const statesNames = getStatesNames(states);
  * @returns {string} La date formatée au format "MM/JJ/AAAA".
  */
 function formatDate(date) {
-  const inputDate = new Date(date);
+  const dateNew = new Date(date);
+  const dateISO = dateNew.toISOString().split("T")[0];
+  const [year, month, day] = dateISO.split(".");
 
-  // Vérifier que la date en entrée est valide
-  if (isNaN(inputDate.getTime())) {
-    throw new Error("Invalid date");
-  }
-
-  // Vérifier si la date correspond à un anniversaire en dessous de 15 ans
-  const now = new Date();
-  const ageDiffMs = now.getTime() - inputDate.getTime();
-  const ageDate = new Date(ageDiffMs);
-  const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
-  if (age &lt; 15) {
-    console.log(
-      "Sorry, you must be at least 15 years old to use this feature."
-    );
-    inputDate.setFullYear(2008); // Modifier l'année de naissance à 2008 (15 ans en 2023)
-  }
-
-  // Formater la date au format "MM/DD/YYYY"
-  const isoDate = inputDate.toISOString().split("T")[0];
-  const [year, month, day] = isoDate.split(".");
-  const formattedDate = [day, month, year].join("");
-
-  return formattedDate;
+  return [month, day, year].join("");
 }
 
 //fin dataPicker
@@ -195,20 +174,17 @@ function Form() {
       setStartDateError("Please select a start date.");
       isError = true;
     } else {
-      const now = Date.now();
-      if (startDate.getTime() > now) {
-        setStartDateError("Start date cannot be in the future.");
+      const ageDiffMs = startDate.getTime() - birthDate.getTime();
+      const ageDate = new Date(ageDiffMs);
+      const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      if (age &lt; 15) {
+        setStartDateError("You must be at least 15 years old to start.");
+        isError = true;
+      } else if (startDate.getTime() === birthDate.getTime()) {
+        setStartDateError("Start date cannot be the same as the birth date.");
         isError = true;
       } else {
-        const ageDiffMs = startDate.getTime() - birthDate.getTime();
-        const ageDate = new Date(ageDiffMs);
-        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age &lt; 15) {
-          setStartDateError("You must be at least 15 years old to start.");
-          isError = true;
-        } else {
-          setStartDateError("");
-        }
+        setStartDateError("");
       }
     }
     if (!street) {
@@ -257,6 +233,9 @@ function Form() {
     department: department.label,
   };
 
+  /**
+   * Vérifie les champs d'un formulaire et envoie une action Redux en fonction de la validité du formulaire.
+   */
   const checkForm = () => {
     if (
       firstName === "" ||
@@ -277,23 +256,20 @@ function Form() {
   };
 
   /**
-   * Enregistre un nouvel employé dans le système.
-   * @async
-   * @function saveEmployee
-   * @param {Event} e - L'événement de l'action déclenchant l'appel à la fonction.
-   * @returns {Promise&lt;string>} - Une promesse qui retourne une chaîne de caractères si l'enregistrement de l'employé échoue.
+   * Enregistre un employé en soumettant le formulaire.
+   * @param {Event} e - L'événement de soumission du formulaire.
+   * @returns {Promise&lt;void>} Une promesse résolue une fois que l'enregistrement de l'employé est terminé.
    */
   const saveEmployee = async (e) => {
     e.preventDefault();
+    const isError = validateForm();
     checkForm();
-    const submit = dispatch(checkValidForm());
-    const err = validateForm();
-
-    if (submit) {
-      dispatch(submitForm(employee));
-      setModal(true);
-    } else {
-      return err;
+    if (!isError) {
+      const submit = dispatch(checkValidForm());
+      if (submit) {
+        dispatch(submitForm(employee));
+        setModal(true);
+      }
     }
   };
 
@@ -492,13 +468,13 @@ export default Form;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-index.html">index</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CreateEmployees">CreateEmployees</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#DataList">DataList</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#FilterComponent">FilterComponent</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#checkValidForm">checkValidForm</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getStatesNames">getStatesNames</a></li><li><a href="global.html#saveEmployee">saveEmployee</a></li><li><a href="global.html#selectEmployees">selectEmployees</a></li><li><a href="global.html#statesNames">statesNames</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#tabStatesFilter">tabStatesFilter</a></li><li><a href="global.html#unvalidForm">unvalidForm</a></li><li><a href="global.html#validForm">validForm</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-index.html">index</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CreateEmployees">CreateEmployees</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#DataList">DataList</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#FilterComponent">FilterComponent</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#checkValidForm">checkValidForm</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getStatesNames">getStatesNames</a></li><li><a href="global.html#selectEmployees">selectEmployees</a></li><li><a href="global.html#statesNames">statesNames</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#tabStatesFilter">tabStatesFilter</a></li><li><a href="global.html#unvalidForm">unvalidForm</a></li><li><a href="global.html#validForm">validForm</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 22 2023 15:48:19 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 23 2023 11:31:26 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

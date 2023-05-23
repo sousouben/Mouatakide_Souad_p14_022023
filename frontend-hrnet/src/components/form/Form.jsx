@@ -205,6 +205,9 @@ function Form() {
     department: department.label,
   };
 
+  /**
+   * Vérifie les champs d'un formulaire et envoie une action Redux en fonction de la validité du formulaire.
+   */
   const checkForm = () => {
     if (
       firstName === "" ||
@@ -225,11 +228,9 @@ function Form() {
   };
 
   /**
-   * Enregistre un nouvel employé dans le système.
-   * @async
-   * @function saveEmployee
-   * @param {Event} e - L'événement de l'action déclenchant l'appel à la fonction.
-   * @returns {Promise<string>} - Une promesse qui retourne une chaîne de caractères si l'enregistrement de l'employé échoue.
+   * Enregistre un employé en soumettant le formulaire.
+   * @param {Event} e - L'événement de soumission du formulaire.
+   * @returns {Promise<void>} Une promesse résolue une fois que l'enregistrement de l'employé est terminé.
    */
   const saveEmployee = async (e) => {
     e.preventDefault();

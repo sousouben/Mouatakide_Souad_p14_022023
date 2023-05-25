@@ -1,12 +1,20 @@
-import React from "react";
 import "./error.css";
 import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-/**
- * Composant Error qui affiche une page d'erreur 404 avec un message et un lien de retour à la page d'accueil.
- * @returns {JSX.Element} Composant Error
- */
 const Error = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/error");
+  }, [navigate]);
+
+  /**
+   * Composant Error qui affiche une page d'erreur 404 avec un message et un lien de retour à la page d'accueil.
+   * @returns {JSX.Element} Composant Error
+   */
+
   return (
     <div className="error">
       <div className="error__title">404</div>

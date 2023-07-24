@@ -78,3 +78,4 @@ npm run doc
 - [Etude du plugins Jquery](https://github.com/jquery/jquery-ui/blob/master/ui/widgets/selectmenu.js)
 - [4ème issue tableau](https://github.com/OpenClassrooms-Student-Center/P12_Front-end/issues/2)
 - [Etude du plugins Jquery](https://github.com/DataTables/DataTables)
+- [repo original](https://github.com/OpenClassrooms-Student-Center/P12_Front-end.git)
